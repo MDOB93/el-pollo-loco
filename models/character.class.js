@@ -22,10 +22,11 @@ class Character extends MovableObject {
         './img/2_character_pepe/1_idle/idle/I-9.png',
         './img/2_character_pepe/1_idle/idle/I-10.png'
     ];
+    world;
 
     constructor() {
         super().loadImage('./img/2_character_pepe/1_idle/idle/I-1.png');
-        this.loadImages(this.imagesIdle);
+        this.loadImages(this.IMAGES_WALKING);
 
         this.animate();
     }
@@ -33,10 +34,22 @@ class Character extends MovableObject {
     // Der Modulo-Operator in JavaScript, dargestellt durch das Prozentzeichen (%), berechnet den Rest einer Division zweier Zahlen.
     animate() {
         setInterval(() =>{
-            let i = this.currentImage % this.imagesIdle.length;
-            let path = this.imagesIdle[i];
-            this.img = this.imgCache[path];
-            this.currentImage++;
+            
+            if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                let i = this.currentImage % this.IMAGES_WALKING.length;
+                let path = this.IMAGES_WALKING[i];
+                this.img = this.imgCache[path];
+                this.currentImage++;
+            }
+        }, 100);
+        setInterval(() =>{
+            if(!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE) {
+                this.loadImages(this.imagesIdle)
+                let i = this.currentImage % this.imagesIdle.length;
+                let path = this.imagesIdle[i];
+                this.img = this.imgCache[path];
+                this.currentImage++;
+            }// else if (timer = 10sec) => longeIdle
         }, 550);
     }
 
