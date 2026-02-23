@@ -44,24 +44,18 @@ class Character extends MovableObject {
                 this.x -= this.speed;
                 this.otherDirection = true;
             }
-            this.world.cameraX = -this.x + 200;
+            this.world.cameraX = -this.x;
         }, 1000 / 60)
         setInterval(() =>{
             
             if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                let i = this.currentImage % this.IMAGES_WALKING.length;
-                let path = this.IMAGES_WALKING[i];
-                this.img = this.imgCache[path];
-                this.currentImage++;
+                this.playAnimation(this.IMAGES_WALKING);
             }
         }, 60);
         setInterval(() =>{
             if(!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && !this.world.keyboard.UP && !this.world.keyboard.DOWN && !this.world.keyboard.SPACE) {
                 this.loadImages(this.imagesIdle)
-                let i = this.currentImage % this.imagesIdle.length;
-                let path = this.imagesIdle[i];
-                this.img = this.imgCache[path];
-                this.currentImage++;
+                this.playAnimation(this.imagesIdle);
             }// else if (timer = 10sec) => longeIdle
         }, 550);
     }
