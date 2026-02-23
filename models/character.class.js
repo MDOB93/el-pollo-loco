@@ -35,16 +35,16 @@ class Character extends MovableObject {
     // Der Modulo-Operator in JavaScript, dargestellt durch das Prozentzeichen (%), berechnet den Rest einer Division zweier Zahlen.
     animate() {
         setInterval(() => {
-            if(this.world.keyboard.RIGHT) {
+            if(this.world.keyboard.RIGHT && this.x < this.world.level.levelEnd) {
                 this.x += this.speed;
                 this.otherDirection = false;
             }
             
-            if(this.world.keyboard.LEFT) {
+            if(this.world.keyboard.LEFT && this.x > -520) {
                 this.x -= this.speed;
                 this.otherDirection = true;
             }
-            this.world.cameraX = -this.x
+            this.world.cameraX = -this.x + 200;
         }, 1000 / 60)
         setInterval(() =>{
             
