@@ -29,6 +29,20 @@ class MovableObject {
         this.img = new Image();
         this.img.src = path;
     }
+
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.heigth);
+    }
+
+    drawHitbox(ctx) {
+        if(this instanceof Character || this instanceof Chicken) {
+            ctx.beginPath();
+            ctx.lineWidth = '5';
+            ctx.strokeStyle = 'blue';
+            ctx.rect(this.x, this.y, this.width, this.heigth);
+            ctx.stroke();
+        }
+    }
     
     loadImages(arr) {
         arr.forEach(path => {
@@ -56,6 +70,6 @@ class MovableObject {
     }
 
     jump() {
-        this.speedY = 16;
+        this.speedY = 18;
     }
 }
