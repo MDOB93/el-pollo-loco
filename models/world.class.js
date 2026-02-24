@@ -12,14 +12,25 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.checkCollisions();
     };
 
     setWorld() {
         this.character.world = this;
-    };
+    }
+
+    checkCollisions() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                if(this.character.isColliding(enemy)) {
+                    console.log('Collision with Character ', enemy);
+                }
+            });
+        }, 200);
+    }
 
     draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.heigth);
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.cameraX, 0);
 
@@ -49,7 +60,7 @@ class World {
             this.ctx.scale(-1, 1);
             mo.x = mo.x * -1;
         }
-        
+
         mo.draw(this.ctx);
         mo.drawHitbox(this.ctx);
         

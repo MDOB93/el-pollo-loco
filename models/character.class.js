@@ -1,5 +1,5 @@
 class Character extends MovableObject {
-    heigth = 450;
+    height = 450;
     width = 220;
     y = 0;
     imagesWalking = [

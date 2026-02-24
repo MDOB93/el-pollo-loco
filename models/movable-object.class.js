@@ -2,7 +2,7 @@ class MovableObject {
     x = 50;
     y = 300;
     img;
-    heigth = 150;
+    height = 150;
     width = 100;
     imgCache = {};
     currentImage = 0;
@@ -31,7 +31,7 @@ class MovableObject {
     }
 
     draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.heigth);
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
     drawHitbox(ctx) {
@@ -39,9 +39,16 @@ class MovableObject {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.heigth);
+            ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
         }
+    }
+
+    isColliding(mo) {
+        return this.x + this.width > mo.x &&
+            this.y + this.height > mo.y &&
+            this.x < mo.x &&
+            this.y < mo.y + mo.height;
     }
     
     loadImages(arr) {
