@@ -1,11 +1,4 @@
-class MovableObject {
-    x = 50;
-    y = 300;
-    img;
-    height = 150;
-    width = 100;
-    imgCache = {};
-    currentImage = 0;
+class MovableObject extends DrawableObject {
     speed = 0.2;
     otherDirection = false;
     speedY = 0;
@@ -25,25 +18,6 @@ class MovableObject {
 
     isAboveGround() {
         return this.y < 0;
-    }
-
-    loadImage(path) {
-        this.img = new Image();
-        this.img.src = path;
-    }
-
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
-    drawHitbox(ctx) {
-        if(this instanceof Character || this instanceof Chicken) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
     }
 
     isColliding(mo) {
@@ -70,14 +44,6 @@ class MovableObject {
 
     isDead() {
         return this.energy == 0;
-    }
-    
-    loadImages(arr) {
-        arr.forEach(path => {
-            let img = new Image();
-            img.src = path;
-            this.imgCache[path] = img; 
-        });
     }
 
     playAnimation(images) {
