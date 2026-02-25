@@ -49,6 +49,10 @@ class Character extends MovableObject {
     ]; 
     world;
     speed = 10;
+    audioWalk = new Audio('./audio/character/characterRun.mp3');
+    audioJump = new Audio('./audio/character/characterJump.wav');
+    audioHurt = new Audio('./audio/character/characterDamage.mp3');
+    audioDead = new Audio('./audio/character/characterDead.wav');
 
     constructor() {
         super().loadImage('./img/2_character_pepe/1_idle/idle/I-1.png');
@@ -79,14 +83,21 @@ class Character extends MovableObject {
         setInterval(() =>{
             if(this.isDead()){
                 this.playAnimation(this.imagesDead);
+                this.audioDead.play();
                 // end screen 
             } else if(this.isHurt()) {
                 this.playAnimation(this.imagesHurt);
+                this.audioHurt.play();
             } else if(this.isAboveGround()) {
                 this.playAnimation(this.imagesJump);
+                this.audioJump.play();
             } else {
                 if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     this.playAnimation(this.imagesWalking);
+                    this.audioWalk.play();
+                } else {
+                    this.audioWalk.pause();
+                    this.audioWalk.currentTime = 0;
                 }
             }
         }, 100);
