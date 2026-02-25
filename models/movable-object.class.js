@@ -17,7 +17,11 @@ class MovableObject extends DrawableObject {
     }
 
     isAboveGround() {
-        return this.y < 0;
+        if(this instanceof ThrowableObject) {
+            return true
+        } else {
+            return this.y < 0;
+        }
     }
 
     isColliding(mo) {
@@ -46,6 +50,7 @@ class MovableObject extends DrawableObject {
         return this.energy == 0;
     }
 
+    // Der Modulo-Operator in JavaScript, dargestellt durch das Prozentzeichen (%), berechnet den Rest einer Division zweier Zahlen.
     playAnimation(images) {
         let i = this.currentImage % images.length;
         let path = images[i];
