@@ -35,6 +35,7 @@ class World {
                 this.statusBar.setPercentage(this.character.energy);
             }
         });
+        // new if state for enemy/bottle
     }
 
     checkThrowObjects() {
@@ -79,6 +80,7 @@ class World {
         }
 
         mo.draw(this.ctx);
+        mo.drawImageBorder(this.ctx);
         mo.drawHitbox(this.ctx);
         
         if(mo.otherDirection){

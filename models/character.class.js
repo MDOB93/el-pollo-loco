@@ -53,6 +53,12 @@ class Character extends MovableObject {
     audioJump = new Audio('./audio/character/characterJump.wav');
     audioHurt = new Audio('./audio/character/characterDamage.mp3');
     audioDead = new Audio('./audio/character/characterDead.wav');
+    offset = {
+        top: 175,
+        right: 50,
+        bottom: 20,
+        left: 50
+    }
 
     constructor() {
         super().loadImage('./img/2_character_pepe/1_idle/idle/I-1.png');
