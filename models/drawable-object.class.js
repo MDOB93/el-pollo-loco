@@ -25,7 +25,7 @@ class DrawableObject {
     }
 
     drawImageBorder(ctx) {
-        if(this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof SmallChicken) {
+        if(this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof SmallChicken || this instanceof ThrowableObject) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
@@ -35,7 +35,7 @@ class DrawableObject {
     }
 
     drawHitbox(ctx) {
-        if(this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof SmallChicken) {
+        if(this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof SmallChicken || this instanceof ThrowableObject) {
             ctx.beginPath();
             ctx.lineWidth = '3';
             ctx.strokeStyle = 'red';
