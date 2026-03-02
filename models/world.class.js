@@ -34,8 +34,20 @@ class World {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }
+            this.throwableObjects.forEach((bottle) => {
+                if(bottle.isColliding(enemy)) {
+                    enemy.hit();
+                }
+            });
         });
         // new if state for enemy/bottle
+        // this.throwableObjects.forEach((bottle) => {
+        //     this.level.enemies.forEach((enemy) => {
+        //         if(bottle.isColliding(enemy)) {
+        //             this.level.enemies[0].hit(5);
+        //         } 
+        //     });
+        // 
     }
 
     checkThrowObjects() {

@@ -11,7 +11,12 @@ class MovableObject extends DrawableObject {
         bottom: 0,
         left: 0
     }
-    
+    damgae = 0;
+
+    constructor() {
+        super();
+    }
+     
     // applyGravity() {
     //     setInterval(() => {
     //         if(this.isAboveGround() || this.speedY > 0) {
