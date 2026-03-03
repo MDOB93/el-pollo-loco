@@ -16,15 +16,6 @@ class MovableObject extends DrawableObject {
     constructor() {
         super();
     }
-     
-    // applyGravity() {
-    //     setInterval(() => {
-    //         if(this.isAboveGround() || this.speedY > 0) {
-    //             this.y -= this.speedY;
-    //             this.speedY -= this.acceleration;
-    //         }
-    //     }, 1000 / 25)
-    // }
 
     applyGravity() {
         this.gravityInterval = setInterval(() => {
@@ -45,13 +36,13 @@ class MovableObject extends DrawableObject {
 
     isColliding(mo) {
         return this.x + this.offset.left + this.width - this.offset.right - this.offset.left > mo.x + mo.offset.left &&
-            this.y + this.offset.top + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
             this.x + this.offset.left < mo.x + mo.offset.left + mo.width - mo.offset.left - mo.offset.right &&
             this.y + this.offset.top < mo.y + mo.offset.top + mo.height - mo.offset.top - mo.offset.bottom;
     }
 
-    hit() {
-        this.energy -= 5;
+    hit(damage) {
+        this.energy -= damage;
         if(this.energy < 0) {
             this.energy = 0;
         } else {
@@ -88,6 +79,6 @@ class MovableObject extends DrawableObject {
     }
 
     jump() {
-        this.speedY = 20;
+        this.speedY = 17;
     }
 }

@@ -28,7 +28,7 @@ class ThrowableObject extends MovableObject {
     }
 
     throw() {
-        this.speedY = 20;
+        this.speedY = 10;
         this.applyGravity();
 
         this.throwIntervalX = setInterval(() => {
@@ -56,5 +56,9 @@ class ThrowableObject extends MovableObject {
         this.throwIntervalX = null;
         this.throwIntervalAnimation = null;
         this.gravityInterval = null;
+    }
+
+    isFlying() {
+        return this.y > 390;
     }
 }

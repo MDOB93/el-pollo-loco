@@ -30,24 +30,32 @@ class World {
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if(this.character.isColliding(enemy)) {
-                this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
+            if (this.character.isColliding(enemy) && !enemy.isDead()) {
+
+                let charBottom = this.character.y + this.character.height - this.character.offset.bottom;
+                let enemyTop = enemy.y + enemy.offset.top;
+
+                if (
+                    this.character.speedY < 0 &&
+                    charBottom >= enemyTop &&
+                    charBottom <= enemyTop + 40
+                ) {
+                    enemy.energy = 0;
+
+                    this.character.y = enemyTop - this.character.height + this.character.offset.bottom;
+                    this.character.speedY = 8;
+                } 
+                else if (!this.character.isAboveGround()) {
+                    this.character.hit(10);
+                    this.statusBar.setPercentage(this.character.energy);
+                }
             }
             this.throwableObjects.forEach((bottle) => {
-                if(bottle.isColliding(enemy)) {
-                    enemy.hit();
+                if(bottle.isColliding(enemy) && !enemy.isDead() && bottle.isFlying()) {
+                    enemy.hit(20);
                 }
             });
         });
-        // new if state for enemy/bottle
-        // this.throwableObjects.forEach((bottle) => {
-        //     this.level.enemies.forEach((enemy) => {
-        //         if(bottle.isColliding(enemy)) {
-        //             this.level.enemies[0].hit(5);
-        //         } 
-        //     });
-        // 
     }
 
     checkThrowObjects() {
