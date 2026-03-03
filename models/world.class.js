@@ -35,17 +35,12 @@ class World {
                 let charBottom = this.character.y + this.character.height - this.character.offset.bottom;
                 let enemyTop = enemy.y + enemy.offset.top;
 
-                if (
-                    this.character.speedY < 0 &&
-                    charBottom >= enemyTop &&
-                    charBottom <= enemyTop + 40
-                ) {
+                if (this.character.speedY < 0 && charBottom >= enemyTop && charBottom <= enemyTop + 40) {
                     enemy.energy = 0;
 
                     this.character.y = enemyTop - this.character.height + this.character.offset.bottom;
                     this.character.speedY = 8;
-                } 
-                else if (!this.character.isAboveGround()) {
+                } else if (!this.character.isAboveGround()) {
                     this.character.hit(10);
                     this.statusBar.setPercentage(this.character.energy);
                 }
